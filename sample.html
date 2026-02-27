@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Stranger Things — Interactive Overview</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <style>
+    :root {
+      --bg: #0b0f1a;
+      --card: #12172a;
+      --accent: #e50914;
+      --text: #e5e7eb;
+      --muted: #9ca3af;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", system-ui, sans-serif;
+    }
+
+    body {
+      background: radial-gradient(circle at top, #111827, #020617);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    header {
+      padding: 60px 20px;
+      text-align: center;
+      background: linear-gradient(
+        to bottom,
+        rgba(229, 9, 20, 0.15),
+        transparent
+      );
+    }
+
+    header h1 {
+      font-size: 3rem;
+      letter-spacing: 2px;
+      color: var(--accent);
+    }
+
+    header p {
+      max-width: 700px;
+      margin: 15px auto 0;
+      color: var(--muted);
+      font-size: 1.05rem;
+    }
+
+    select {
+      margin-top: 20px;
+      padding: 10px 15px;
+      border-radius: 8px;
+      border: none;
+      background: var(--card);
+      color: var(--text);
+      font-size: 1rem;
+      cursor: pointer;
+    }
+
+    main {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 30px 20px 60px;
+    }
+
+    .section {
+      margin-bottom: 50px;
+    }
+
+    .section h2 {
+      font-size: 1.8rem;
+      margin-bottom: 15px;
+      border-left: 5px solid var(--accent);
+      padding-left: 12px;
+    }
+
+    .section p {
+      color: var(--muted);
+      max-width: 900px;
+    }
+
+    .characters {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 25px;
+      margin-top: 25px;
+    }
+
+    .card {
+      background: linear-gradient(to bottom right, #111827, #020617);
+      border-radius: 16px;
+      padding: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+      border: 1px solid rgba(255,255,255,0.05);
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 18px 45px rgba(229,9,20,0.25);
+    }
+
+    .card.active {
+      border: 2px solid var(--accent);
+      box-shadow: 0 20px 50px rgba(229,9,20,0.35);
+    }
+
+    .card h3 {
+      color: #fff;
+      margin-bottom: 8px;
+      font-size: 1.2rem;
+    }
+
+    .card span {
+      display: inline-block;
+      font-size: 0.85rem;
+      color: var(--accent);
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      font-size: 0.95rem;
+      color: var(--muted);
+    }
+
+    footer {
+      text-align: center;
+      padding: 25px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    footer strong {
+      color: var(--accent);
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <h1 id="mainTitle">STRANGER THINGS — Season 1</h1>
+  <p id="seasonDescription">
+    A supernatural sci-fi thriller set in Hawkins.
+  </p>
+
+  <select id="seasonSelect">
+    <option value="1">Season 1</option>
+    <option value="2">Season 2</option>
+    <option value="3">Season 3</option>
+    <option value="4">Season 4</option>
+  </select>
+</header>
+
+<main>
+  <section class="section">
+    <h2>Main Characters</h2>
+
+    <div class="characters">
+      <div class="card" data-season="1">
+        <h3>Eleven</h3>
+        <span>Psychokinetic Hero</span>
+        <p>Central figure connected to the Upside Down.</p>
+      </div>
+
+      <div class="card" data-season="2">
+        <h3>Mike Wheeler</h3>
+        <span>The Leader</span>
+        <p>Emotional anchor of the group.</p>
+      </div>
+
+      <div class="card" data-season="3">
+        <h3>Dustin Henderson</h3>
+        <span>The Comic Mind</span>
+        <p>Scientific curiosity and humor combined.</p>
+      </div>
+
+      <div class="card" data-season="4">
+        <h3>Max Mayfield</h3>
+        <span>The Fighter</span>
+        <p>Emotionally strong and fearless in Season 4.</p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>
+    Inspired by <strong>Stranger Things</strong> — Interactive UI Demo.
+  </p>
+</footer>
+
+<script>
+  const seasonSelect = document.getElementById("seasonSelect");
+  const mainTitle = document.getElementById("mainTitle");
+  const seasonDescription = document.getElementById("seasonDescription");
+  const cards = document.querySelectorAll(".card");
+
+  const seasonDescriptions = {
+    1: "Season 1 explores the mysterious disappearance of Will Byers.",
+    2: "Season 2 expands the threat of the Upside Down.",
+    3: "Season 3 introduces new dangers in Starcourt Mall.",
+    4: "Season 4 dives deeper into psychological horror and Vecna."
+  };
+
+  seasonSelect.addEventListener("change", function () {
+    const season = this.value;
+
+    updateTitle(season);
+    updateDescription(season);
+    highlightCharacter(season);
+  });
+
+  function updateTitle(season) {
+    mainTitle.textContent = "STRANGER THINGS — Season " + season;
+  }
+
+  function updateDescription(season) {
+    seasonDescription.textContent = seasonDescriptions[season];
+  }
+
+  function highlightCharacter(season) {
+    cards.forEach(card => {
+      card.classList.remove("active");
+      if (card.dataset.season === season) {
+        card.classList.add("active");
+      }
+    });
+  }
+</script>
+
+</body>
+</html>
