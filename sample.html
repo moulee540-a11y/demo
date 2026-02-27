@@ -1,29 +1,28 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<title>Marvel Multiverse — Enhanced Interactive Overview</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8" />
+  <title>Marvel Multiverse — Interactive Overview</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
   <style>
     :root {
-      --bg: #0b0f1a;
-      --card: #12172a;
-      --accent: #e50914;
-      --text: #e5e7eb;
-      --muted: #9ca3af;
+      --bg: #0f172a;
+      --card: #1e293b;
+      --accent: #ef4444;
+      --text: #f1f5f9;
+      --muted: #94a3b8;
     }
 
-.light {
-  --bg: #f8fafc;
-  --card: #ffffff;
-  --accent: #dc2626;
-  --text: #0f172a;
-  --muted: #475569;
-}
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: "Segoe UI", system-ui, sans-serif;
+    }
 
     body {
-      background: radial-gradient(circle at top, #111827, #020617);
+      background: radial-gradient(circle at top, #1e293b, #020617);
       color: var(--text);
       line-height: 1.6;
     }
@@ -31,15 +30,11 @@
     header {
       padding: 60px 20px;
       text-align: center;
-      background: linear-gradient(
-        to bottom,
-        rgba(229, 9, 20, 0.15),
-        transparent
-      );
+      background: linear-gradient(to bottom, rgba(239,68,68,0.2), transparent);
     }
 
     header h1 {
-      font-size: 3rem;
+      font-size: 2.8rem;
       letter-spacing: 2px;
       color: var(--accent);
     }
@@ -48,7 +43,6 @@
       max-width: 700px;
       margin: 15px auto 0;
       color: var(--muted);
-      font-size: 1.05rem;
     }
 
     select {
@@ -58,14 +52,13 @@
       border: none;
       background: var(--card);
       color: var(--text);
-      font-size: 1rem;
       cursor: pointer;
     }
 
     main {
       max-width: 1100px;
       margin: 0 auto;
-      padding: 30px 20px 60px;
+      padding: 40px 20px;
     }
 
     .section {
@@ -73,18 +66,13 @@
     }
 
     .section h2 {
-      font-size: 1.8rem;
+      font-size: 1.6rem;
       margin-bottom: 15px;
       border-left: 5px solid var(--accent);
       padding-left: 12px;
     }
 
-    .section p {
-      color: var(--muted);
-      max-width: 900px;
-    }
-
-    .characters {
+    .heroes {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 25px;
@@ -92,39 +80,35 @@
     }
 
     .card {
-      background: linear-gradient(to bottom right, #111827, #020617);
+      background: linear-gradient(to bottom right, #1e293b, #0f172a);
       border-radius: 16px;
       padding: 20px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
       border: 1px solid rgba(255,255,255,0.05);
-      transition: transform 0.3s ease, box-shadow 0.3s ease, border 0.3s ease;
+      transition: all 0.3s ease;
     }
 
     .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 18px 45px rgba(229,9,20,0.25);
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(239,68,68,0.3);
     }
 
     .card.active {
       border: 2px solid var(--accent);
-      box-shadow: 0 20px 50px rgba(229,9,20,0.35);
+      box-shadow: 0 20px 50px rgba(239,68,68,0.4);
     }
 
     .card h3 {
-      color: #fff;
       margin-bottom: 8px;
-      font-size: 1.2rem;
     }
 
     .card span {
-      display: inline-block;
       font-size: 0.85rem;
       color: var(--accent);
-      margin-bottom: 10px;
     }
 
     .card p {
-      font-size: 0.95rem;
+      margin-top: 8px;
+      font-size: 0.9rem;
       color: var(--muted);
     }
 
@@ -133,11 +117,6 @@
       padding: 25px;
       border-top: 1px solid rgba(255,255,255,0.08);
       color: var(--muted);
-      font-size: 0.9rem;
-    }
-
-    footer strong {
-      color: var(--accent);
     }
   </style>
 </head>
@@ -145,9 +124,9 @@
 <body>
 
 <header>
-  <h1 id="mainTitle">STRANGER THINGS — Season 1</h1>
-  <p id="seasonDescription">
-    A supernatural sci-fi thriller set in Hawkins.
+  <h1 id="mainTitle">MARVEL MULTIVERSE — Phase 1</h1>
+  <p id="phaseDescription">
+    The beginning of the Avengers initiative.
   </p>
 
   <select id="phaseSelect">
@@ -156,83 +135,76 @@
     <option value="3">Phase 3</option>
     <option value="4">Phase 4</option>
   </select>
-
-  <br />
-  <button class="toggle-btn" id="themeToggle">Toggle Theme</button>
-  <div class="loading" id="loadingText">Loading phase data...</div>
 </header>
 
 <main>
   <section class="section">
-    <h2>Main Characters</h2>
+    <h2>Key Heroes</h2>
 
-    <div class="characters">
-      <div class="card" data-season="1">
-        <h3>Eleven</h3>
-        <span>Psychokinetic Hero</span>
-        <p>Central figure connected to the Upside Down.</p>
+    <div class="heroes">
+      <div class="card" data-phase="1">
+        <h3>Iron Man</h3>
+        <span>Tech Genius</span>
+        <p>Founder of the Avengers and pioneer of advanced armor tech.</p>
       </div>
 
-      <div class="card" data-season="2">
-        <h3>Mike Wheeler</h3>
-        <span>The Leader</span>
-        <p>Emotional anchor of the group.</p>
+      <div class="card" data-phase="2">
+        <h3>Captain America</h3>
+        <span>Super Soldier</span>
+        <p>Symbol of leadership, courage, and resilience.</p>
       </div>
 
-      <div class="card" data-season="3">
-        <h3>Dustin Henderson</h3>
-        <span>The Comic Mind</span>
-        <p>Scientific curiosity and humor combined.</p>
+      <div class="card" data-phase="3">
+        <h3>Thor</h3>
+        <span>God of Thunder</span>
+        <p>Protector of Asgard and wielder of lightning power.</p>
       </div>
 
-      <div class="card" data-season="4">
-        <h3>Max Mayfield</h3>
-        <span>The Fighter</span>
-        <p>Emotionally strong and fearless in Season 4.</p>
+      <div class="card" data-phase="4">
+        <h3>Doctor Strange</h3>
+        <span>Sorcerer Supreme</span>
+        <p>Master of the mystic arts and guardian of the multiverse.</p>
       </div>
     </div>
   </section>
 </main>
 
 <footer>
-  <p>
-    Inspired by <strong>Stranger Things</strong> — Interactive UI Demo.
-  </p>
+  Inspired by the Marvel Cinematic Universe.
 </footer>
 
 <script>
-  const seasonSelect = document.getElementById("seasonSelect");
+  const phaseSelect = document.getElementById("phaseSelect");
   const mainTitle = document.getElementById("mainTitle");
-  const seasonDescription = document.getElementById("seasonDescription");
+  const phaseDescription = document.getElementById("phaseDescription");
   const cards = document.querySelectorAll(".card");
 
-  const seasonDescriptions = {
-    1: "Season 1 explores the mysterious disappearance of Will Byers.",
-    2: "Season 2 expands the threat of the Upside Down.",
-    3: "Season 3 introduces new dangers in Starcourt Mall.",
-    4: "Season 4 dives deeper into psychological horror and Vecna."
+  const descriptions = {
+    1: "Phase 1 introduces Earth's Mightiest Heroes.",
+    2: "Phase 2 expands the universe and internal conflicts.",
+    3: "Phase 3 builds toward Infinity War and Endgame.",
+    4: "Phase 4 explores the multiverse and new heroes."
   };
 
-  seasonSelect.addEventListener("change", function () {
-    const season = this.value;
-
-    updateTitle(season);
-    updateDescription(season);
-    highlightCharacter(season);
+  phaseSelect.addEventListener("change", function () {
+    const phase = this.value;
+    updateTitle(phase);
+    updateDescription(phase);
+    highlightHero(phase);
   });
 
-  function updateTitle(season) {
-    mainTitle.textContent = "STRANGER THINGS — Season " + season;
+  function updateTitle(phase) {
+    mainTitle.textContent = "MARVEL MULTIVERSE —  Phase " + phase;
   }
 
-  function updateDescription(season) {
-    seasonDescription.textContent = seasonDescriptions[season];
+  function updateDescription(phase) {
+    phaseDescription.textContent = descriptions[phase];
   }
 
-  function highlightCharacter(season) {
+  function highlightHero(phase) {
     cards.forEach(card => {
       card.classList.remove("active");
-      if (card.dataset.season === season) {
+      if (card.dataset.phase === phase) {
         card.classList.add("active");
       }
     });
